@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Fengjiao Chen">
+<title>陈凤娇</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #222;
+    --muted: #666;
+    --line: #e5e5e5;
+    --accent: #1a56b0;
+    --link: #1a56b0;
+    --card: #f7f8fa;
+    --thumb-bg: #eef1f5;
+    --max-w: 960px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", Georgia, serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.75; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 20px; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ===== Hero: 左照片 + 右简介 ===== */
+  header { padding: 48px 0 8px; }
+  .hero { display: flex; gap: 36px; align-items: flex-start; }
+.photo-col { flex: 0 0 240px; }
+.photo-col img {
+width: 240px; height: 240px; object-fit: cover;
+border-radius: 50%; border: 1px solid var(--line); display: block;
+}
+  .photo-col .caption { font-size: 12.5px; color: var(--muted); text-align: center; margin-top: 6px; }
+  .bio-col { flex: 1; min-width: 0; }
+  .bio-col h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.3px; }
+  .bio-col .en-name { font-size: 15px; color: var(--muted); margin-top: 2px; }
+  .bio-col p { margin-top: 14px; font-size: 15px; }
+  .interests { margin: 10px 0 0 22px; font-size: 15px; }
+  .interests li { margin: 3px 0; }
+  .contact-line { margin-top: 14px; font-size: 14.5px; color: var(--muted); }
+
+  /* ===== Section 标题（emoji + 分隔线） ===== */
+  section { padding: 26px 0 6px; }
+  h2 {
+    font-size: 21px; font-weight: 700; margin-bottom: 16px;
+    padding-bottom: 6px; border-bottom: 2px solid var(--line);
+  }
+
+  /* ===== News ===== */
+  .news { list-style: none; }
+  .news li {
+    font-size: 14.5px; padding: 3px 0;
+    display: flex; gap: 10px;
+  }
+  .news .date {
+    color: var(--accent); font-weight: 600; white-space: nowrap;
+    font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 13.5px;
+  }
+  .news .hl { color: var(--accent); font-weight: 600; }
+
+  /* ===== Publications ===== */
+  .pub-note { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+  .pub {
+    display: flex; gap: 18px; padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .pub:last-child { border-bottom: none; }
+  .pub .thumb {
+    flex: 0 0 168px; height: 112px; border-radius: 6px;
+    background: var(--thumb-bg); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center;
+    color: #9aa4b2; font-size: 12.5px; text-align: center; line-height: 1.5;
+    overflow: hidden;
+  }
+  .pub .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .pub .info { flex: 1; min-width: 0; }
+  .pub .venue-tag {
+    display: inline-block; font-size: 12px; font-weight: 700;
+    background: var(--accent); color: #fff; border-radius: 4px;
+    padding: 1px 8px; margin-right: 6px; vertical-align: 2px;
+  }
+  .pub .venue-tag.oral { background: #c0392b; }
+  .pub .venue-tag.spot { background: #d68910; }
+  .pub h3 { font-size: 15.5px; font-weight: 650; line-height: 1.55; display: inline; }
+  .pub .authors { font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .pub .authors .me { font-weight: 700; color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+  .pub .authors sup { font-size: 11px; }
+  .pub .venue-line { font-size: 13.5px; color: var(--muted); font-style: italic; margin-top: 3px; }
+  .pub .pub-links { font-size: 13.5px; margin-top: 5px; }
+  .pub .pub-links a { margin-right: 12px; font-weight: 600; }
+
+  /* ===== Projects ===== */
+  .proj {
+    display: flex; gap: 20px; padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .proj:last-child { border-bottom: none; }
+  .proj .period {
+    flex: 0 0 132px; font-size: 13px; font-weight: 600; color: var(--accent);
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    line-height: 1.6; padding-top: 2px; white-space: nowrap;
+  }
+  .proj .period .status { color: #c0392b; }
+  .proj .info { flex: 1; min-width: 0; }
+  .proj h3 { font-size: 15.5px; font-weight: 650; line-height: 1.55; display: inline; }
+  .proj .role-tag {
+    display: inline-block; font-size: 12px; font-weight: 700;
+    background: var(--accent); color: #fff; border-radius: 4px;
+    padding: 1px 8px; margin-right: 6px; vertical-align: 2px;
+  }
+  .proj .role-tag.lead { background: #c0392b; }
+  .proj .desc { font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .proj .desc .hl { color: var(--accent); font-weight: 600; }
+  .proj .tags { font-size: 12.5px; color: var(--muted); margin-top: 5px; }
+  .proj .tags span {
+    display: inline-block; background: var(--card); border: 1px solid var(--line);
+    border-radius: 4px; padding: 0 8px; margin: 2px 4px 2px 0;
+  }
+
+  /* ===== Services / Awards ===== */
+  .service-cols { display: flex; gap: 40px; flex-wrap: wrap; }
+  .service-col { flex: 1; min-width: 260px; }
+  .service-col h3 { font-size: 16px; margin-bottom: 8px; }
+  .service-col ul { margin-left: 20px; font-size: 14.5px; }
+  .service-col li { margin: 3px 0; }
+  .award-list { margin-left: 20px; font-size: 14.5px; }
+  .award-list li { margin: 3px 0; }
+
+  /* ===== 招生 / Footer ===== */
+  .recruit {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 8px; padding: 18px 22px; font-size: 14.5px;
+  }
+  footer {
+    margin-top: 30px; padding: 22px 0 44px;
+    border-top: 1px solid var(--line);
+    font-size: 13px; color: var(--muted); text-align: center;
+  }
+
+  @media (max-width: 720px) {
+    .hero { flex-direction: column; }
+    .photo-col { flex: none; align-self: center; }
+    .pub { flex-direction: column; }
+    .pub .thumb { width: 100%; flex: none; }
+    .proj { flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ================= Hero ================= -->
+  <header>
+    <div class="hero">
+      <div class="photo-col">
+        <img src="https://avatars.githubusercontent.com/u/4092013?v=4" alt="Fengjiao Chen">
+        <div class="caption">追寻大自然的奥秘</div>
+      </div>
+      <div class="bio-col">
+        <h1>Fengjiao Chen</h1>
+        <div class="en-name">Fengjiao Chen · Senior Algorithm Engineer</div>
+        <p>
+          I received my bachelor's and master's degrees from Beijing Institute of Technology (BIT) via direct admission. 
+          I worked at Microsoft Research Asia (MSRA) and a startup before joining Meituan, where I led product search recall, product knowledge graphs and their integration with large language models. 
+          Later I worked on data-scaling for multi-modal foundation model pre-training, unified model architecture exploration, multi-modal evaluation (various directions), and the full embodied intelligence pipeline including world model. 
+          I am now focused on embodied intelligence, aiming to enable the zero-shot/few-shot generalization ability through large-scale Human Imitation Learning and efficient Self-Evolution.
+        </p>
+        <p>Interests：</p>
+        <ul class="interests">
+          <li>Data-driven Fundamental Model Pretraining</li>
+          <li>Embodied Intelligence through Human Imitation Learning (including pretraining without action label and in-context-learning) </li>
+          <li>Embodied World Model as Simulator and RL playground</li>
+          <li>Embodied Intelligence through Self-Evolution (memory management)</li>
+          <li>Embodied Intelligence through Self-Evolution (reinforcement learning)</li>
+        </ul>
+        <div class="contact-line">
+          <a href="mailto:cfjmonkey@hotmail.com">cfjmonkey@hotmail.com</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 招生（可选，不需要可整段删除） ================= -->
+  <section id="recruit">
+    <h2>🎯 Recruiting</h2>
+    <div class="recruit">
+      Intern students are welcome to join my group. Please send your CV and a brief introduction to
+          📧 <a href="mailto:chenfengjiao02@meituan.com">chenfengjiao02@meituan.com</a>
+    </div>
+  </section>
+
+  <!-- ================= News ================= -->
+  <!-- <section id="news">
+    <h2>🔥 News</h2>
+    <ul class="news">
+      <li><span class="date">[2026/10]</span><span>论文 <span class="hl">「示例论文标题」</span> 被 CVPR 2026 接收（Oral）</span></li>
+      <li><span class="date">[2026/08]</span><span>开源项目 lite-feat 突破 2k Stars</span></li>
+      <li><span class="date">[2026/05]</span><span>受邀担任 AAAI 2026 程序委员会成员</span></li>
+      <li><span class="date">[2026/01]</span><span>项目「XX 排序系统」上线，CTR +8.2%</span></li>
+    </ul>
+  </section> -->
+
+  <!-- ================= Projects ================= -->
+  <section id="projects">
+    <h2>💼 Projects</h2>
+
+    <div class="proj">
+      <div class="period">2025 – Now<br><span class="status">In Progress</span></div>
+      <div class="info">
+        <span class="role-tag lead">Lead</span>
+        <h3>Embodied Intelligence Full Pipeline &amp; World Model Exploration</h3>
+        <div class="desc">
+          <strong>1. Human Imitation Learning:</strong> End-to-end pipeline covering data processing, action representation (LARYBench), pretraining, post-training, ICL (which is also test-time human imitation learning), simulation evaluation (on our self-built generalization benchmark), and real-robot evaluation (EVA-Client). 
+          <br/><strong>2. Self-Evolution:</strong> It depends on diverse, real, interactive environments and an efficient training framework — an embodied world model that combines the strengths of both real robots and simulation. We have so far built out an initial infrastructure, including an evaluation protocol for world models and a version of an embodied world model that performs reasonably well in limited scenarios.
+          <br/><strong>Core conclusions:</strong> human data can transfer to robots; latent-level representations are more suitable for robotics than pixel-level (video-generation) representations; the scaling gains from human data come from vision, requiring no action annotations; training vision and action with shared parameters in the foundation model yields complementary benefits (unlike the industry's MoT approach of splitting parameters so each modality learns separately); the ability to reflect and self-correct based on context history emerges from pretraining alone. Data is the core asset.
+        </div>
+        <div class="tags"><span>Embodied Intelligence</span><span>Latent Action</span><span>World Model</span><span>In Context Learning</span><span>RSI</span></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="period">2025 – Now<br><span class="status">In Progress</span></div>
+      <div class="info">
+        <span class="role-tag lead">Lead</span>
+        <h3>Multi-Modal Evaluation</h3>
+        <div class="desc">
+          Responsible for evaluation across image understanding, video understanding, image generation, video generation, audio-visual generation, audio-visual interaction, GUI agents, and general multimodal agent directions, supporting the iteration of in-house models and tracking frontier progress in the business. We have built several evaluation benchmarks (e.g., UNOBench, WBench, UniGUI, EvalTalker).
+        </div>
+        <div class="tags"><span>Imitation Learning</span><span>In-Context Learning</span><span>Self-Evolution</span></div>
+      </div>
+    </div>
+        
+    <div class="proj">
+      <div class="period">2023 – 2025</div>
+      <div class="info">
+        <span class="role-tag lead">Lead</span>
+        <h3>Data-Scaling for Multi-Modal Foundation Model Pretraining</h3>
+        <div class="desc">
+          Led data-scaling strategy for multi-modal foundation model pretraining. 1. Data Pipeline Construction: including data collection, cleaning and deduplication, annotation and analysis, and data mixing ratios to pretraining experiments — all applied to Longcat-Flash-Omni. 2. Unified Model Exploration: squeezed value out of the data by enabling multimodal models to learn from multimodal data rather than from text alone, building a unified generative-and-understanding model. At a scale of hundreds of millions of samples, we verified that generation facilitates understanding and yields better scaling trends. <a href=" https://zhuanlan.zhihu.com/p/2022476874236862565">[UniHetero & Related Work]</a>
+        </div>
+        <div class="tags"><span>Data Scaling</span><span>Multi-Modal Pretraining</span><span>Unified Model</span></div>
+      </div>
+    </div>
+
+    <div class="proj">
+      <div class="period">2021 – 2023</div>
+      <div class="info">
+        <span class="role-tag lead">Lead</span>
+        <h3>Knowledge Graph × LLM</h3>
+        <div class="desc">
+          Led the construction of product knowledge graph and cross knowledge graph. <a href="https://zhuanlan.zhihu.com/p/507380563">[TALK]</a>
+          <br/>Furthermore, explored the integration of knowledge graph with large language models (LLM) for customized applications and enhanced performance.
+        </div>
+        <div class="tags"><span>Knowledge Graph</span><span>LLM</span><span>RAG</span></div>
+      </div>
+    </div>    
+
+    <div class="proj">
+      <div class="period">2019 – 2020</div>
+      <div class="info">
+        <span class="role-tag lead">Lead</span>
+        <h3>Product Search Recall @ Meituan</h3>
+        <div class="desc">
+          Led the development of product search recall from scratch, including query understanding, correction, rewrite, NER, category classification, embedding recall and so on. 
+        </div>
+        <div class="tags"><span>Search Recall</span><span>NLP</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Selected Publications ================= -->
+  <section id="publications">
+    <h2>📝 Selected Publications</h2>
+    <!-- <div class="pub-note">
+      <sup>*</sup> 共同一作，<sup>†</sup> 通讯作者，<span class="me" style="font-weight:700;">下划线加粗</span> 为本人。更多论文见 <a href="#">完整列表</a>。
+    </div> -->
+
+    <div class="pub">
+      <div class="thumb"><img src="#" alt="Paper 1" onerror="this.remove()"></div>
+      <div class="info">
+        <span class="venue-tag">2026</span>
+        <h3><a href="https://arxiv.org/abs/2605.25874"> Multi-View World Model with Proprioceptive Feedback for Closed-Loop Policy Evaluation</a></h3>
+        <div class="authors">Zijun Wang, Tianyi Yan, Haokun Lin, Panwen Hu, Bohang He, Siyu Ren, Xiaoyu Guo, Weijia Liufu, Shuoshuo Xue, <span class="me">FengJiao Chen<sup>†</sup></span>, Zipeng Ye, Xuezhi Cao, Zutao Jiang, Hanhui Li, Xiaodan Liang</div>
+        <div class="venue-line">
+          We study whether an action-conditioned world model can serve as a closed-loop test environment whose policy success rates track those on real robots. 
+          Beyond realistic video, the model must return the camera views and proprioceptive state needed for the policy's next action and preserve failed-action outcomes to avoid overestimating policy capability. 
+          Across three policies and four local manipulation tasks, it attains a Pearson correlation of 0.95 and a Spearman correlation of 0.94 between generated and real success rates.
+          These results support joint visual-proprioceptive feedback and failure-aware training as a basis for world model policy evaluation.
+        </div>
+        <div class="pub-links">
+          <a href="#">[Paper]</a><a href="#">[Project]</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb"><img src="https://modelscope.cn/datasets/meituan-longcat/WBench/resolve/master/assets/teaser.png" alt="Paper 1" onerror="this.remove()"></div>
+      <div class="info">
+        <span class="venue-tag">2026</span>
+        <h3><a href="https://arxiv.org/abs/2605.25874">WBench: A Comprehensive Multi-turn Benchmark for Interactive World Model Evaluationt</a></h3>
+        <div class="authors">Kaining Ying, Hengrui Hu, Siyu Ren, Jiamu Li, <span class="me">FengJiao Chen<sup>†</sup></span>, Ziwen Wang, Xuezhi Cao, Henghui Ding</div>
+        <div class="venue-line">
+          A comprehensive evaluation framework with 289 cases, 1,058 interaction turns, covering 4 interaction types (navigation, subject action, event editing, perspective switching) across diverse scenes and perspectives.
+          Systematic diagnosis of 39 models revealing that current world models have not yet unified high-fidelity rendering with reliable controllability, consistency, and physics compliance.
+        </div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2605.25874">[Paper]</a><a href="https://meituan-longcat.github.io/WBench/">[Project]</a><a href="https://meituan-longcat.github.io/WBench/#leaderboard">[Leaderboard]</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb"><img src="https://mxxq-stack.github.io/rmmbench-project/images/abstract.gif" alt="Paper 1" onerror="this.remove()"></div>
+      <div class="info">
+        <span class="venue-tag">CoRL 2026</span>
+        <h3><a href="https://arxiv.org/abs/2610.05414">RMMBench: A Comprehensive Benchmark for Robotic Mobile Manipulation</a></h3>
+        <div class="authors">Huapeng Li, Fuxiang Feng, Jinqiu Fan, Shuo Yang, <span class="me">FengJiao Chen<sup>†</sup></span>, Xuezhi Cao, Ran Song, Wei Zhang</div>
+        <div class="venue-line">
+          An evaluation methodology to measure the VLM abilities while applying in robotic navigation and manipulation. 
+          To enable closed-loop interaction between VLMs and robotic systems, we propose a framework that enhance VLMs fine-grained recognition besides task planning, 
+          and enable automatic visual observation to trigger exploration and correction ability from VLMs. </div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2610.05414">[Paper]</a><a href="https://mxxq-stack.github.io/rmmbench-project/">[Project]</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb"><img src="https://meituan-longcat.github.io/LARYBench/imgs/lary.jpg" alt="Paper 1" onerror="this.remove()"></div>
+      <div class="info">
+        <span class="venue-tag">ECCV 2026</span>
+        <h3><a href="https://arxiv.org/abs/2604.11689">LARY: A Latent Action Representation Yielding Benchmark for Generalizable Vision-to-Action Alignment</a></h3>
+        <div class="authors">Dujun Nie, <span class="me">FengJiao Chen<sup>†</sup></span>, Jun Kuang, Qi Lv, Xiaoyu Li, Xuezhi Cao</div>
+        <div class="venue-line">A unified framework evaluating the foundational problem of utilizing large-scale human video datasets to bridge visual signals with ontology-independent actions, 
+          comprehensively assessing latent representations on both low-level robotic execution and high-level semantic tasks across 1M+ videos and 151 action categories. 
+          Main Findings: 
+          1. Action from human videos can transfer to robostic control;
+          2. Latent-level representation with diverse dataset is the key.</div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2604.11689">[Paper]</a><a href="https://github.com/meituan-longcat/LARYBench">[Code]</a><a href="https://meituan-longcat.github.io/LARYBench/">[Project]</a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="pub">
+      <div class="thumb"><img src="https://paper-assets.alphaxiv.org/figures/2512.23512v2/img-2.jpeg" alt="Paper 2" onerror="this.remove()"></div>
+      <div class="info">
+        <span class="venue-tag">2025</span>
+        <h3><a href="https://arxiv.org/abs/2512.23512">UniHetero: Could Generation Enhance Understanding for Vision-Language-Model at Large Data Scale?</a></h3>
+        <div class="authors"><span class="me">FengJiao Chen<sup>†</sup></span>, Minhao Jing, Weitao Lu, Yan Feng, Xiaoyu Li, Xuezhi Cao</div>
+        <div class="venue-line">
+          Could multimodal data can contribute more intelligence rather than text?
+          In this work, we verify that Generation can improve understanding under large-scale pretraining (>200M samples). The keys are: (1) Only if you generate Semantics, Not Pixels. (2) Generation reveals a superior Data Scaling trend and higher Data Utilization. (3) Autoregression on Input Embedding is effective to capture visual details. 
+        </div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2512.23512">[Paper]</a>
+        </div>
+      </div>
+    </div>  
+    
+        <div class="pub">
+      <div class="thumb"><img src="https://github.com/meituan-longcat/LongCat-Flash-Omni/blob/main/figures/longcat_flash_omni_architecture.png" alt="Paper 2" onerror="this.remove()"></div>
+      <div class="info">
+        <span class="venue-tag">2025</span>
+        <h3><a href="https://arxiv.org/abs/2511.00279">LongCat-Flash-Omni Technical Report</a></h3>
+        <div class="authors">Longcat Team</div>
+        <div class="venue-line">
+          LongCat-Flash-Omni is an open-source omni-modal model that achieves state-of-the-art cross-modal comprehension performance. Through carefully data cleaning, caption, tagging, and clustering-based sampling, we achieve to use more diverse and low-quality dataset to push the performance further according to the data scaling law.
+        </div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2511.00279">[Paper]</a><a href="https://github.com/meituan-longcat/LongCat-Flash-Omni">[Project]</a>
+        </div>
+      </div>
+    </div>  
+
+
+    <div class="pub">
+      <div class="thumb"><img src="images/pub3.png" alt="Paper 3" onerror="this.remove()"></div>
+      <div class="info">
+        <span class="venue-tag">EMNLP 2026</span>
+        <h3><a href="https://openreview.net/forum?id=6CR4gOqXSb">UniGUI-Bench: A Real-World Diagnostic Benchmark — What Capabilities Do GUI Agents Most Need?</a></h3>
+        <div class="authors">Jiaxing Liu, Ruoqi Sun, Liya Ma, <span class="me">FengJiao Chen<sup>†</sup></span>, Ziwen Wang, Xuezhi Cao</div>
+        <div class="venue-line">
+          A benchmark that jointly verifies task-level outcomes and process-level capability diagnosis. 
+          It spans 6 device platforms and 23 application scenarios with bilingual support, comprising over 10,000 evaluation items. 
+          Its core design links the two evaluation axes: each task failure can be traced to specific capability deficiencies, enabling fine-grained attribution beyond binary pass/fail. </div>
+        <div class="pub-links">
+          <a href="https://openreview.net/forum?id=6CR4gOqXSb">[Paper]</a><a href="https://huggingface.co/datasets/AGI-Eval/UniGUI-Bench">[Dataset]</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb"><img src="https://meituan-longcat.github.io/UNO-Bench/compositional-law.png" alt="Paper 2" onerror="this.remove()"></div>
+      <div class="info">
+        <span class="venue-tag">2025</span>
+        <h3><a href="https://arxiv.org/abs/2510.18915">UNO-Bench: A Unified Benchmark for Exploring the Compositional Law Between Uni-modal and Omni-modal in Omni Models</a></h3>
+        <div class="authors">Chen Chen, Zeyang Hu, <span class="me">FengJiao Chen<sup>†</sup></span>, Peng Ding, Liya Ma, Jiaxing Liu, Ziwen Wang, Xuezhi Cao, Xunliang Cai</div>
+        <div class="venue-line">
+          This benchmark is designed to effectively evaluate both UNi-modal and Omni-modal capabilities under a unified ability taxonomy, spanning 44 task types and 5 modality combinations. 
+          A general scoring model is incorporated, supporting 6 question types for automated evaluation with 95% accuracy. 
+          Experimental result shows the Compositional Law between omni-modal and uni-modal performance and the omni-modal capability manifests as a bottleneck effect on weak models, while exhibiting synergistic promotion on strong models.
+        </div>
+        <div class="pub-links">
+          <a href="https://arxiv.org/abs/2510.18915">[Paper]</a><a href="https://meituan-longcat.github.io/UNO-Bench/">[Project]</a>
+        </div>
+      </div>
+    </div>
+
+
+  </section>
+
+  <!-- ================= Awards & Services ================= -->
+  <!-- <section id="services">
+    <h2>🏆 荣誉与学术服务</h2>
+    <div class="service-cols">
+      <div class="service-col">
+        <h3>荣誉奖项</h3>
+        <ul class="award-list">
+          <li>某某奖学金（Top 5%）· 2021</li>
+          <li>ACM 竞赛区域赛银牌 · 2018</li>
+          <li>公司年度技术突破奖 · 2024</li>
+        </ul>
+      </div>
+      <div class="service-col">
+        <h3>审稿与PC</h3>
+        <ul>
+          <li>会议审稿：CVPR, NeurIPS, ICML, KDD</li>
+          <li>期刊审稿：IEEE TPAMI, IEEE TMM</li>
+          <li>AAAI 2026 Program Committee</li>
+        </ul>
+      </div>
+    </div>
+  </section> -->
+
+  <footer>
+    © 2026 Fengjiao · Profile. All rights reserved. <br>
+    <a href="https://github.com/cfjmonkey/cfjmonkey.github.io">Source</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
