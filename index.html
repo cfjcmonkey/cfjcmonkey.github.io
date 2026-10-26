@@ -173,7 +173,7 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
           Later I worked on data-scaling for multi-modal foundation model pre-training, unified model architecture exploration, multi-modal evaluation (various directions), and the full embodied intelligence pipeline including world model. 
           I am now focused on embodied intelligence, aiming to enable the zero-shot/few-shot generalization ability through large-scale Human Imitation Learning and efficient Self-Evolution.
         </p>
-        <p>Interests：</p>
+        <p>Interests: </p>
         <ul class="interests">
           <li>Data-driven Fundamental Model Pretraining</li>
           <li>Embodied Intelligence through Human Imitation Learning (including pretraining without action label and in-context-learning) </li>
@@ -188,7 +188,7 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
     </div>
   </header>
 
-  <!-- ================= 招生（可选，不需要可整段删除） ================= -->
+  <!-- ================= 招生 ================= -->
   <section id="recruit">
     <h2>🎯 Recruiting</h2>
     <div class="recruit">
@@ -218,9 +218,21 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
         <span class="role-tag lead">Lead</span>
         <h3>Embodied Intelligence Full Pipeline &amp; World Model Exploration</h3>
         <div class="desc">
-          <strong>1. Human Imitation Learning:</strong> End-to-end pipeline covering data processing, action representation (LARYBench), pretraining, post-training, ICL (which is also test-time human imitation learning), simulation evaluation (on our self-built generalization benchmark), and real-robot evaluation (EVA-Client). 
-          <br/><strong>2. Self-Evolution:</strong> It depends on diverse, real, interactive environments and an efficient training framework — an embodied world model that combines the strengths of both real robots and simulation. We have so far built out an initial infrastructure, including an evaluation protocol for world models and a version of an embodied world model that performs reasonably well in limited scenarios.
-          <br/><strong>Core conclusions:</strong> human data can transfer to robots; latent-level representations are more suitable for robotics than pixel-level (video-generation) representations; the scaling gains from human data come from vision, requiring no action annotations; training vision and action with shared parameters in the foundation model yields complementary benefits (unlike the industry's MoT approach of splitting parameters so each modality learns separately); the ability to reflect and self-correct based on context history emerges from pretraining alone. Data is the core asset.
+          <strong>1. Human Imitation Learning:</strong> Using human-data to drive the generalization of embodied intelligence. Construction of the whole pipeline covering data processing, action representation (<a href="https://arxiv.org/abs/2604.11689">LARYBench</a>), pretraining, post-training, in-context-learning (which is also test-time human imitation learning), simulation, whole-stage evaluation (<a href="#comming soon">LARY2.0</a>), data collection, and real-robot deployment (<a href="https://github.com/Noietch/EVA-CLIENT">EVA-Client</a>).
+          
+          <br/><strong>Core Insights:</strong>
+          <ul style="margin:4px 0;padding-left:18px;column-count:2;column-gap:20px">
+            <li style="break-inside:avoid">Human data can transfer to robots without supervision.</li>
+            <li style="break-inside:avoid">Latent-level representations suit robotics better than pixel-level (video-generation) representations.</li>
+            <li style="break-inside:avoid"><strong style="color:#c0392b;">Human-data scaling gains from vision and require no action annotations. </strong>(same in <a href="https://www.dyna.co/dyna-2">Dyna2</a> but with only 2k hours to verify)</li>
+            <li style="break-inside:avoid">Shared vision and action parameters in the foundation model yield complementary benefits (<strong style="color:#c0392b;">no need for MoT</strong>).</li>
+            <li style="break-inside:avoid">In-context learning lifts performance when indexing and robustness are bottlenecks.</li>
+            <li style="break-inside:avoid">Episode-level pretraining enables reflection and self-correction based on context history.</li>
+            <li style="break-inside:avoid"><strong style="color:#c0392b;">Data is the core asset</strong>, where hierarchical captioning and tagging, data curation and sampling are essential. (<a href="#">coming soon</a>)</li>
+          </ul>
+
+          <br/><strong>2. Self-Evolution:</strong> It depends on diverse, real, interactive environments and an efficient training framework, for which an <strong>Embodied World Model</strong> is well suited. We have so far built out the work described in <a href="https://openreview.net/pdf?id=TGtZJ9calQ">ProWorld</a> with good compliance with both successful and failed action trajectories. Further improvement relies on references beyond the world model (work in progress).
+
         </div>
         <div class="tags"><span>Embodied Intelligence</span><span>Latent Action</span><span>World Model</span><span>In Context Learning</span><span>RSI</span></div>
       </div>
@@ -232,7 +244,7 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
         <span class="role-tag lead">Lead</span>
         <h3>Multi-Modal Evaluation</h3>
         <div class="desc">
-          Responsible for evaluation across image understanding, video understanding, image generation, video generation, audio-visual generation, audio-visual interaction, GUI agents, and general multimodal agent directions, supporting the iteration of in-house models and tracking frontier progress in the business. We have built several evaluation benchmarks (e.g., UNOBench, WBench, UniGUI, EvalTalker).
+          Responsible for evaluation across image understanding, video understanding, image generation, video generation, audio-visual generation, audio-visual interaction, GUI agents, and general multimodal agent directions, supporting the iteration of in-house models and tracking frontier progress in the business. We have built several evaluation benchmarks that reveals the uni-modal and omni-modal compositional law across model-sizes (UNOBench); progress recognition and self-correction can enhance GUI Agent (UniGUI); physical-alignment is still a bottleneck for 2D World Models (WBench).
         </div>
         <div class="tags"><span>Evaluation</span><span>Multi-Modal</span><span>Agent</span><span>World Model</span></div>
       </div>
@@ -244,7 +256,10 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
         <span class="role-tag lead">Lead</span>
         <h3>Data-Scaling for Multi-Modal Foundation Model Pretraining</h3>
         <div class="desc">
-          Led data-scaling strategy for multi-modal foundation model pretraining. 1. Data Pipeline Construction: including data collection, cleaning and deduplication, annotation and analysis, and data mixing ratios to pretraining experiments — all applied to Longcat-Flash-Omni. 2. Unified Model Exploration: squeezed value out of the data by enabling multimodal models to learn from multimodal data rather than from text alone, building a unified generative-and-understanding model. At a scale of hundreds of millions of samples, we verified that generation facilitates understanding and yields better scaling trends. <a href=" https://zhuanlan.zhihu.com/p/2022476874236862565">[UniHetero & Related Work]</a>
+          Lead data-scaling strategy for multi-modal foundation model pretraining. 
+          </br>1. <strong>Data Pipeline Construction:</strong> including data collection, cleaning and deduplication, annotation and analysis, and data mixing strategies to pretraining experiments — all applied to <a href="https://arxiv.org/abs/2511.00279">Longcat-Flash-Omni</a>. 
+          </br>2. <strong>Unified Model Exploration:</strong> squeezed value out of the data by enabling multimodal models to learn from multimodal data rather than from text alone, building a unified generative-and-understanding model. 
+          At a scale of hundreds of millions of samples, <strong style="color:#c0392b;">we verified that generation enhances understanding and yields better scaling trends.</strong> <a href="https://zhuanlan.zhihu.com/p/2022476874236862565">[UniHetero & Related Work]</a>
         </div>
         <div class="tags"><span>Data Scaling</span><span>Multi-Modal Pretraining</span><span>Unified Model</span></div>
       </div>
@@ -256,8 +271,8 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
         <span class="role-tag lead">Lead</span>
         <h3>Knowledge Graph × LLM</h3>
         <div class="desc">
-          Led the construction of product knowledge graph and cross knowledge graph. <a href="https://zhuanlan.zhihu.com/p/507380563">[TALK]</a>
-          <br/>Furthermore, explored the integration of knowledge graph with large language models (LLM) for customized applications and enhanced performance.
+          Lead the constructions and applications of product knowledge graph and cross knowledge graph. Managing diverse applications into a unified and controllable manner. <a href="https://zhuanlan.zhihu.com/p/507380563">[TALK]</a>
+          <br/>Furthermore, explored the integration of knowledge graph with large language models (LLM) for customized applications and enhanced performance. (Agentic LLM+KG with self-correction ability)
         </div>
         <div class="tags"><span>Knowledge Graph</span><span>LLM</span><span>RAG</span></div>
       </div>
@@ -269,7 +284,7 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
         <span class="role-tag lead">Lead</span>
         <h3>Product Search Recall @ Meituan</h3>
         <div class="desc">
-          Led the development of product search recall from scratch, including query understanding, correction, rewrite, NER, category classification, embedding recall and so on. 
+          Lead the development of product search recall from scratch, including query understanding, correction, rewrite, NER, category classification, embedding recall and so on. 
         </div>
         <div class="tags"><span>Search Recall</span><span>NLP</span></div>
       </div>
@@ -287,7 +302,7 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
       <div class="thumb"><img src="#" alt="Paper 1" onerror="this.remove()"></div>
       <div class="info">
         <span class="venue-tag">2026</span>
-        <h3><a href="https://arxiv.org/abs/2605.25874"> Multi-View World Model with Proprioceptive Feedback for Closed-Loop Policy Evaluation</a></h3>
+        <h3><a href="https://openreview.net/pdf?id=TGtZJ9calQ"> Multi-View World Model with Proprioceptive Feedback for Closed-Loop Policy Evaluation</a></h3>
         <div class="authors">Zijun Wang, Tianyi Yan, Haokun Lin, Panwen Hu, Bohang He, Siyu Ren, Xiaoyu Guo, Weijia Liufu, Shuoshuo Xue, <span class="me">FengJiao Chen<sup>†</sup></span>, Zipeng Ye, Xuezhi Cao, Zutao Jiang, Hanhui Li, Xiaodan Liang</div>
         <div class="venue-line">
           We study whether an action-conditioned world model can serve as a closed-loop test environment whose policy success rates track those on real robots. 
@@ -296,7 +311,23 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
           These results support joint visual-proprioceptive feedback and failure-aware training as a basis for world model policy evaluation.
         </div>
         <div class="pub-links">
-          <a href="#">[Paper]</a><a href="#">[Project]</a>
+          <a href="https://openreview.net/pdf?id=TGtZJ9calQ">[Paper]</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="thumb"><img src="#" alt="Paper 1" onerror="this.remove()"></div>
+      <div class="info">
+        <span class="venue-tag">CoRL 2026 Workshop</span>
+        <h3><a href="https://openreview.net/pdf?id=y0qBMe2qH3"> 2AM: Grounding Agent-Side Memory as Guidance for Steerable Action Models in Long-Horizon Manipulation</a></h3>
+        <div class="authors">Yutong Hu, <span class="me">FengJiao Chen<sup>†</sup></span>, Xuezhi Cao, Renaud Detry</div>
+        <div class="venue-line">
+          VLM is under-estimated with proper interface design rather than language. We propose a deliberately constrained design: less tool breadth, but greater interface bandwidth. 2AM makes a multimodal Agent the sole holder of task memory and a single RGB-based, episodically stateless Action Model the sole executor of task-relevant motion. 
+          The Agent compiles interaction history into subtask language and optional 2D grasp, place, and move hints that bind its physical intention at different time scales.
+        </div>
+        <div class="pub-links">
+          <a href="https://openreview.net/pdf?id=y0qBMe2qH3">[Paper]</a>
         </div>
       </div>
     </div>
