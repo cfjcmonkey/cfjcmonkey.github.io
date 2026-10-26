@@ -53,6 +53,23 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
     padding-bottom: 6px; border-bottom: 2px solid var(--line);
   }
 
+  /* ===== Video ===== */
+  .video-block { margin-top: 28px; }
+  .video-block h3 { font-size: 16px; font-weight: 650; margin-bottom: 10px; }
+  .video-frame {
+    position: relative; width: 100%;
+    border: 1px solid var(--line); border-radius: 8px;
+    overflow: hidden; background: #000;
+  }
+  .video-frame video {
+    display: block; width: 100%; height: auto;
+  }
+  .video-frame iframe {
+    display: block; width: 100%; aspect-ratio: 16/9; height: auto;
+    border: 0;
+  }
+  .video-caption { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
   /* ===== News ===== */
   .news { list-style: none; }
   .news li {
@@ -310,6 +327,16 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
           Across three policies and four local manipulation tasks, it attains a Pearson correlation of 0.95 and a Spearman correlation of 0.94 between generated and real success rates.
           These results support joint visual-proprioceptive feedback and failure-aware training as a basis for world model policy evaluation.
         </div>
+
+        <div class="video-block">
+          <div class="video-frame">
+            <video controls preload="auto" loop playsinline poster="wm_demo_3_poster.jpg">
+              <source src="wm_demo_3.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-caption">Demo: following both successful and failure action trajectories.</div>
+        </div>
+
         <div class="pub-links">
           <a href="https://openreview.net/pdf?id=TGtZJ9calQ">[Paper]</a>
         </div>
@@ -317,17 +344,17 @@ border-radius: 50%; border: 1px solid var(--line); display: block;
     </div>
 
     <div class="pub">
-      <div class="thumb"><img src="#" alt="Paper 1" onerror="this.remove()"></div>
+      <div class="thumb"><img src="https://paper-assets.alphaxiv.org/paper-figures/01a08e81-80cc-72dc-aeff-80ee1a574b5f/01a14eb5-ab71-7718-9360-b8922b5b4437.png" alt="Paper 1" onerror="this.remove()"></div>
       <div class="info">
         <span class="venue-tag">CoRL 2026 Workshop</span>
-        <h3><a href="https://openreview.net/pdf?id=y0qBMe2qH3"> 2AM: Grounding Agent-Side Memory as Guidance for Steerable Action Models in Long-Horizon Manipulation</a></h3>
+        <h3><a href="https://arxiv.org/abs/2609.11308"> 2AM: Grounding Agent-Side Memory as Guidance for Steerable Action Models in Long-Horizon Manipulation</a></h3>
         <div class="authors">Yutong Hu, <span class="me">FengJiao Chen<sup>†</sup></span>, Xuezhi Cao, Renaud Detry</div>
         <div class="venue-line">
           VLM is under-estimated with proper interface design rather than language. We propose a deliberately constrained design: less tool breadth, but greater interface bandwidth. 2AM makes a multimodal Agent the sole holder of task memory and a single RGB-based, episodically stateless Action Model the sole executor of task-relevant motion. 
           The Agent compiles interaction history into subtask language and optional 2D grasp, place, and move hints that bind its physical intention at different time scales.
         </div>
         <div class="pub-links">
-          <a href="https://openreview.net/pdf?id=y0qBMe2qH3">[Paper]</a>
+          <a href="https://arxiv.org/abs/2609.11308">[Paper]</a>
         </div>
       </div>
     </div>
